@@ -27,7 +27,7 @@ const Profile = () => {
       </p>
       <div className="flex gap-8 mt-2">
         <Link
-          href="https://github.com/NeiltonSeguins" //corrigir para o link do instagram
+          href="https://www.instagram.com/neilton_seguins/"
           target="_blank"
           rel="noopener noreferrer"
           className="no-horizontal-padding"

@@ -37,7 +37,7 @@ const PageLayout = ({ heading, subheading, items }: PageLayoutProps) => {
                 <Link
                   as="router"
                   href={item.link}
-                  className=" hover:underline text-sm font-medium mt-2 inline-block"
+                  className="text-sm font-medium mt-2 inline-block"
                 >
                   Ver mais &rsaquo;
                 </Link>
