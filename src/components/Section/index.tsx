@@ -21,7 +21,7 @@ const Section = ({ title, items }: SectionProps) => {
               className="flex-shrink-0 w-64 sm:w-72 border rounded-lg p-4 flex flex-col justify-between hover:shadow-lg snap-center"
             >
               <img
-                src={item.image}
+                src={item.cover}
                 alt={item.title}
                 className="w-16 sm:w-20 h-16 sm:h-20 rounded-full mb-4 border"
               />
@@ -30,7 +30,10 @@ const Section = ({ title, items }: SectionProps) => {
               </h3>
               <p className="text-sm mb-4">{item.description}</p>
               {item.link && (
-                <Link href={item.link} className="font-semibold">
+                <Link
+                  as="router"
+                  href={item.link}
+                >
                   Saiba mais →
                 </Link>
               )}

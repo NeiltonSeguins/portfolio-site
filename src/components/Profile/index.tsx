@@ -23,7 +23,10 @@ const Profile = () => {
       <p className="mt-4 mb-4 max-w-2xl">
         Eu me chamo Neilton Seguins, otaku não praticante, desenvolvedor, gamer
         e contrabaixista. Sou Desenvolvedor de software, Instrutor de cursos de
-        programação e escrevo sobre a vida, universo e tudo mais no Dev.to
+        programação e escrevo sobre a vida, universo e tudo mais no{" "}
+        <Link as="a" href="https://dev.to/neiltonseguins">
+          Dev.to
+        </Link>
       </p>
       <div className="flex gap-8 mt-2">
         <Link

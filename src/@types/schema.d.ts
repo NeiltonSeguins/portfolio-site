@@ -32,6 +32,6 @@ export type CardItem = {
   id: string;
   title: string;
   description: string;
-  image?: string;
+  cover?: string;
   link?: string;
 };

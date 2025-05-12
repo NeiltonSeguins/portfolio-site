@@ -60,7 +60,7 @@ const MarkdownRenderer = ({ content }: Props) => {
                 {children}
               </code>
             ) : (
-              <pre className="bg-[#0d1117] max-w-3xl mx-auto text-zinc-100 p-4 rounded-lg overflow-auto text-sm my-4">
+              <pre className="bg-[#0d1117] max-w-full mx-auto text-zinc-100 p-4 rounded-lg overflow-auto text-sm my-4">
                 <code {...props}>{children}</code>
               </pre>
             );

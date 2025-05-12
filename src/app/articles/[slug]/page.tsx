@@ -23,7 +23,7 @@ const ArticlePage = async ({ params }: Props) => {
   if (!post) return notFound();
 
   return (
-    <article className="prose prose-zinc dark:prose-invert max-w-[1200px] mx-auto">
+    <article className="prose prose-zinc dark:prose-invert max-w-[900px] mx-auto">
       {post.cover && (
         <Image
           src={post.cover}

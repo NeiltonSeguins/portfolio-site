@@ -21,7 +21,10 @@ const Footer = () => {
         </Link>
       </div>
 
-      <span>© 2024 Neilton Seguins. Todos os direitos reservados.</span>
+      <span>
+        © {new Date().getFullYear()} Neilton Seguins. Todos os direitos
+        reservados.
+      </span>
     </footer>
   );
 };

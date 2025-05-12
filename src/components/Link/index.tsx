@@ -17,7 +17,7 @@ const Link = ({ children, href, as = "a", ...props }: LinkProps) => {
         {...props}
         className={buttonVariants({
           variant: "link",
-          className: "cursor-pointer",
+          className: "display-block cursor-pointer",
         })}
       >
         {children}
