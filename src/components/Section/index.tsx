@@ -1,14 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
 import Link from "../Link";
-
-type CardItem = {
-  id: string;
-  title: string;
-  description: string;
-  image?: string;
-  link?: string;
-};
+import { CardItem } from "@/@types/schema";
 
 type SectionProps = {
   title: string;

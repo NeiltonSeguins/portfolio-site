@@ -1,12 +1,5 @@
+import { Item } from "@/@types/schema";
 import Link from "../Link";
-
-type Item = {
-  id: string;
-  title: string;
-  description: string;
-  link: string;
-  date: string;
-};
 
 type PageLayoutProps = {
   heading: string;
@@ -23,9 +16,9 @@ const PageLayout = ({ heading, subheading, items }: PageLayoutProps) => {
       </div>
       <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
         <div className="flex max-w-3xl flex-col space-y-16">
-          {items.map((item, index) => (
+          {items.map((item) => (
             <article
-              key={index}
+              key={item.id}
               className="md:grid md:grid-cols-4 md:items-baseline"
             >
               <time className="mt-1 md:block relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500">
