@@ -1,3 +1,4 @@
+export const revalidate = 60;
 import PageLayout from "@/components/PageLayout";
 import { getPublishedBlogPosts } from "@/services/notion-service";
 
@@ -13,7 +14,7 @@ const Articles = async () => {
       month: "short",
       year: "numeric",
     }),
-    link: `/artigos/${article.slug}`,
+    link: `/articles/${article.slug}`,
   }));
 
   return (

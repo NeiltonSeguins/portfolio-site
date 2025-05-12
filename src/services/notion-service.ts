@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Client } from "@notionhq/client";
 import { BlogPost } from "../@types/schema";
 
@@ -43,4 +44,104 @@ function pageToPostTransformer(page: any): BlogPost {
     tags: page.properties.Tags.multi_select,
     date: page.properties.Date.date.start,
   };
+}
+
+export async function getPostBySlug(
+  slug: string
+): Promise<(BlogPost & { content: string }) | null> {
+  const databaseId = process.env.NOTION_BLOG_DATABASE_ID ?? "";
+
+  const response = await notion.databases.query({
+    database_id: databaseId,
+    filter: {
+      property: "Slug",
+      rich_text: {
+        equals: slug,
+      },
+    },
+  });
+
+  const page = response.results[0];
+  if (!page) return null;
+
+  const post = pageToPostTransformer(page);
+  const blocks = await notion.blocks.children.list({ block_id: page.id });
+
+  const richTextToMarkdown = (richTextArray: any[]): string => {
+    return richTextArray
+      .map((rich) => {
+        let text = rich.plain_text;
+
+        if (!text) return "";
+
+        if (rich.annotations?.code) {
+          text = `\`${text}\``;
+        }
+
+        if (rich.annotations?.bold) {
+          text = `**${text}**`;
+        }
+
+        if (rich.annotations?.italic) {
+          text = `*${text}*`;
+        }
+
+        if (rich.annotations?.strikethrough) {
+          text = `~~${text}~~`;
+        }
+
+        if (rich.href) {
+          text = `[${text}](${rich.href})`;
+        }
+
+        return text;
+      })
+      .join("");
+  };
+
+  const markdown = blocks.results
+    .map((block: any) => {
+      switch (block.type) {
+        case "paragraph":
+          return richTextToMarkdown(block.paragraph.rich_text);
+        case "heading_1":
+          return `# ${richTextToMarkdown(block.heading_1.rich_text)}`;
+        case "heading_2":
+          return `## ${richTextToMarkdown(block.heading_2.rich_text)}`;
+        case "heading_3":
+          return `### ${richTextToMarkdown(block.heading_3.rich_text)}`;
+        case "bulleted_list_item":
+          return `- ${richTextToMarkdown(block.bulleted_list_item.rich_text)}`;
+        case "numbered_list_item":
+          return `1. ${richTextToMarkdown(block.numbered_list_item.rich_text)}`;
+        case "code":
+          const lang = block.code.language || "";
+          return `\`\`\`${lang}\n${richTextToMarkdown(
+            block.code.rich_text
+          )}\n\`\`\``;
+        case "image":
+          const url =
+            block.image.type === "external"
+              ? block.image.external.url
+              : block.image.file.url;
+          return `![image](${url})`;
+        default:
+          return "";
+      }
+    })
+    .join("\n\n");
+
+  return {
+    ...post,
+    date: formatDate(post.date),
+    content: markdown,
+  };
+}
+
+export function formatDate(dateStr: string) {
+  return new Date(dateStr).toLocaleDateString("pt-BR", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  });
 }
