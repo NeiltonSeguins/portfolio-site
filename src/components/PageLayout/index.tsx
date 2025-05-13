@@ -26,7 +26,7 @@ const PageLayout = ({ heading, subheading, items }: PageLayoutProps) => {
               </time>
               <div className="md:col-span-3 group relative flex flex-col items-start scroll-mt-8">
                 <h2 className="text-xl font-semibold  mt-1">{item.title}</h2>
-                <p className=" mt-2">{item.description}</p>
+                <p className=" mt-2 mb-2">{item.description}</p>
                 <Link
                   as="router"
                   href={item.link}

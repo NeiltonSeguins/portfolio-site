@@ -138,6 +138,22 @@ export async function getPostBySlug(
   };
 }
 
+export async function getContent() {
+  const res = await fetch(
+    "https://raw.githubusercontent.com/NeiltonSeguins/content-site/refs/heads/main/content.json",
+    {
+      headers: {
+        Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+        Accept: "application/vnd.github.v3.raw",
+      },
+    }
+  );
+
+  if (!res.ok) throw new Error("Erro ao carregar conteúdo");
+
+  return res.json();
+}
+
 export function formatDate(dateStr: string) {
   return new Date(dateStr).toLocaleDateString("pt-BR", {
     day: "2-digit",
