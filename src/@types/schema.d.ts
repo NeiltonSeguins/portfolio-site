@@ -34,4 +34,5 @@ export type CardItem = {
   description: string;
   cover?: string;
   link?: string;
+  date: string;
 };

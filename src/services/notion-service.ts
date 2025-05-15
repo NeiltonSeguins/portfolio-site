@@ -151,7 +151,12 @@ export async function getContent() {
 
   if (!res.ok) throw new Error("Erro ao carregar conteúdo");
 
-  return res.json();
+  const data = await res.json();
+
+  return {
+    courses: data.courses,
+    projects: data.projects,
+  };
 }
 
 export function formatDate(dateStr: string) {

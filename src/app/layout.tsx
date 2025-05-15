@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Neilton Seguins",
-  description: "Portfólio de desenvolvedor",
+  description: "Site pessoal de Neilton Seguins",
 };
 
 export default function RootLayout({
