@@ -160,7 +160,7 @@ export async function getContent() {
 }
 
 export function formatDate(dateStr: string) {
-  return new Date(dateStr).toLocaleDateString("pt-BR", {
+  return new Date(dateStr + "T12:00:00").toLocaleDateString("pt-BR", {
     day: "2-digit",
     month: "long",
     year: "numeric",
