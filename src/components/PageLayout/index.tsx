@@ -1,11 +1,11 @@
 import { Item } from "@/@types/schema";
 import ListItemCard from "../ListItemCard";
 
-type PageLayoutProps = {
+interface PageLayoutProps {
   heading: string;
   subheading: string;
   items: Item[];
-};
+}
 
 const PageLayout = ({ heading, subheading, items }: PageLayoutProps) => {
   return (
