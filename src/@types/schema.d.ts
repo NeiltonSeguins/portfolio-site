@@ -1,3 +1,5 @@
+import { IconProps } from "@radix-ui/react-icons/dist/types";
+
 export type Tag = {
   color: string;
   id: string;
@@ -36,3 +38,9 @@ export type CardItem = {
   link?: string;
   date: string;
 };
+
+export interface LinkItemData {
+  title: string;
+  url: string;
+  icon: (props: IconProps) => JSX.Element;
+}

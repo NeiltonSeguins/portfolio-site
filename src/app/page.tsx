@@ -1,7 +1,7 @@
-export const revalidate = 60;
+export const revalidate = 86400;
 import Profile from "@/components/Profile";
 import Section from "@/components/Section";
-import { getContent, getPublishedBlogPosts } from "@/services/notion-service";
+import { getContent, getPublishedBlogPosts } from "@/services/services";
 
 const Home = async () => {
   const articles = await getPublishedBlogPosts();

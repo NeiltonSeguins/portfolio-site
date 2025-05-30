@@ -1,13 +1,19 @@
-/* eslint-disable @next/next/no-img-element */
-import Link from "@/components/Link";
 import {
   InstagramLogoIcon,
   LinkedInLogoIcon,
   GitHubLogoIcon,
   EnvelopeOpenIcon,
 } from "@radix-ui/react-icons";
-import Image from "next/image";
-import profilePic from './profile-pic.jpg'
+import Image, { StaticImageData } from "next/image";
+import profilePic from "./profile-pic.jpg";
+import { LinkItemData } from "@/@types/schema";
+import AboutLinkItem from "./AboutLinkItem";
+interface AboutPageData {
+  name: string;
+  description: string[];
+  image: StaticImageData;
+  links: LinkItemData[];
+}
 
 const aboutData = {
   name: "Neilton",
@@ -40,7 +46,7 @@ const aboutData = {
       icon: EnvelopeOpenIcon,
     },
   ],
-};
+} as AboutPageData;
 
 const About = () => {
   return (
@@ -66,18 +72,8 @@ const About = () => {
             className="rounded-lg shadow-lg mb-6 mx-auto lg:mx-0 md:rotate-6 lg:rotate-6"
           />
           <ul className="space-y-4">
-            {aboutData.links.map(({ title, url, icon: Icon }, index) => (
-              <li key={index}>
-                <Link
-                  href={url}
-                  className="flex items-center"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Icon className="w-6 h-6 mr-2" />
-                  {title}
-                </Link>
-              </li>
+            {aboutData.links.map((link) => (
+              <AboutLinkItem key={link.url} item={link} />
             ))}
           </ul>
         </div>

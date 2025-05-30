@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Client } from "@notionhq/client";
 import { BlogPost } from "../@types/schema";
+import { formatDate } from "@/lib/utils";
 
 const notion = new Client({ auth: process.env.NOTION_ACCESS_TOKEN });
 
@@ -157,12 +158,4 @@ export async function getContent() {
     courses: data.courses,
     projects: data.projects,
   };
-}
-
-export function formatDate(dateStr: string) {
-  return new Date(dateStr + "T12:00:00").toLocaleDateString("pt-BR", {
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
-  });
 }

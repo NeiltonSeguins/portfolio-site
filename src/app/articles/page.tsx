@@ -1,6 +1,7 @@
-export const revalidate = 60;
+export const revalidate = 86400;
 import PageLayout from "@/components/PageLayout";
-import { getPublishedBlogPosts } from "@/services/notion-service";
+import { formatDate } from "@/lib/utils";
+import { getPublishedBlogPosts } from "@/services/services";
 
 const Articles = async () => {
   const articles = await getPublishedBlogPosts();
@@ -9,11 +10,7 @@ const Articles = async () => {
     id: article.id,
     title: article.title,
     description: article.description,
-    date: new Date(article.date).toLocaleDateString("pt-BR", {
-      day: "2-digit",
-      month: "short",
-      year: "numeric",
-    }),
+    date: formatDate(article.date),
     link: `/articles/${article.slug}`,
   }));
 

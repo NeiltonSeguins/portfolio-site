@@ -1,7 +1,8 @@
-export const revalidate = 60;
+export const revalidate = 86400;
 import { CardItem } from "@/@types/schema";
 import PageLayout from "@/components/PageLayout";
-import { formatDate, getContent } from "@/services/notion-service";
+import { formatDate } from "@/lib/utils";
+import { getContent } from "@/services/services";
 
 const Projects = async () => {
   const { projects } = await getContent();

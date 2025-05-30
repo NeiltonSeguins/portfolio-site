@@ -1,10 +1,6 @@
-import {
-  GitHubLogoIcon,
-  LinkedInLogoIcon,
-  InstagramLogoIcon,
-} from "@radix-ui/react-icons";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import Link from "../Link";
+import SocialLinks from "../SocialLinks";
 
 const Profile = () => {
   return (
@@ -28,32 +24,7 @@ const Profile = () => {
           Dev.to
         </Link>
       </p>
-      <div className="flex gap-8 mt-2">
-        <Link
-          href="https://www.instagram.com/neilton_seguins/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="no-horizontal-padding"
-        >
-          <InstagramLogoIcon />
-        </Link>
-        <Link
-          href="https://github.com/NeiltonSeguins"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="no-horizontal-padding"
-        >
-          <GitHubLogoIcon />
-        </Link>
-        <Link
-          href="https://www.linkedin.com/in/ne%C3%ADlton-seguins/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="no-horizontal-padding"
-        >
-          <LinkedInLogoIcon />
-        </Link>
-      </div>
+      <SocialLinks />
     </section>
   );
 };
