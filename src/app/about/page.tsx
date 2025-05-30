@@ -44,7 +44,7 @@ const aboutData = {
 
 const About = () => {
   return (
-    <section className="py-16 px-4">
+    <section className="py-16">
       <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         {/* Texto da seção */}
         <div>
