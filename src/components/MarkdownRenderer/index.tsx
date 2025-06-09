@@ -65,9 +65,14 @@ const MarkdownRenderer = ({ content }: Props) => {
             <strong className="font-bold" {...props} />
           ),
           a: ({ node, href, children, ...props }) => (
-            <Link href={href} {...props}>
+            <a
+              href={href}
+              target="_blanked"
+              className="font-semibold hover:underline"
+              {...props}
+            >
               {children}
-            </Link>
+            </a>
           ),
           img: ({ src = "", alt = "" }) => (
             <div className="relative w-full max-w-3xl mx-auto h-auto aspect-[16/9] my-6">
