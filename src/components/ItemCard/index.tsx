@@ -17,7 +17,7 @@ const ItemCard = ({ item }: ItemCardProps) => {
         <img
           src={item.cover}
           alt={item.title}
-          className="w-16 sm:w-20 h-16 sm:h-20 rounded-full mb-4 border"
+          className="w-16 sm:w-20 h-16 sm:h-20 rounded-full mb-4 border object-cover"
         />
       )}
       <h3 className="text-base sm:text-lg font-semibold mb-2">{item.title}</h3>
