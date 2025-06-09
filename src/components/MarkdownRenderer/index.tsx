@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from "react";
 import ReactMarkdown from "react-markdown";
@@ -32,7 +33,9 @@ const MarkdownRenderer = ({ content }: Props) => {
           p: ({ node, children, ...props }) => {
             // Se o parágrafo contém apenas uma imagem, retorna só a imagem sem a tag <p>
             const isImageOnly =
-              node?.children.length === 1 && node.children[0].tagName === "img";
+              node?.children.length === 1 &&
+              "tagName" in node.children[0] &&
+              node.children[0].tagName === "img";
 
             if (node && isImageOnly) {
               return <>{children}</>;
@@ -51,21 +54,14 @@ const MarkdownRenderer = ({ content }: Props) => {
             <ol className="list-decimal pl-6 mb-4" {...props} />
           ),
           li: ({ node, ...props }) => <li className="mb-1" {...props} />,
-          code: ({ node, inline, children, ...props }) => {
-            return inline ? (
-              <code
-                className="bg-zinc-100 dark:bg-zinc-800 px-1 py-0.5 rounded text-sm"
-                {...props}
-              >
-                {children}
-              </code>
-            ) : (
+          code: ({ node, children, ...props }) => {
+            return (
               <pre className="bg-[#0d1117] max-w-full mx-auto text-zinc-100 p-4 rounded-lg overflow-auto text-sm my-4">
                 <code {...props}>{children}</code>
               </pre>
             );
           },
-          strong: ({ node, ...props }) => (
+          strong: ({ node, ...props }: any) => (
             <strong className="font-bold" {...props} />
           ),
           a: ({ node, href, children, ...props }) => (
