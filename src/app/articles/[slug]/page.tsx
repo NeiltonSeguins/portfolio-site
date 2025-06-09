@@ -1,13 +1,18 @@
 export const revalidate = 86400;
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import { getPostBySlug } from "@/services/services";
+import { getPostBySlug, getPublishedBlogPosts } from "@/services/services";
 import { Metadata } from "next";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 
 type Props = {
   params: { slug: string };
 };
+
+export async function generateStaticParams() {
+  const posts = await getPublishedBlogPosts();
+  return posts.map((post) => ({ slug: post.slug }));
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await getPostBySlug(params.slug);

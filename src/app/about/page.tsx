@@ -69,7 +69,7 @@ const About = () => {
           <Image
             src={aboutData.image}
             alt={aboutData.name}
-            className="rounded-lg shadow-lg mb-6 mx-auto lg:mx-0 md:rotate-6 lg:rotate-6"
+            className="rounded-full shadow-lg mb-6 mx-auto lg:mx-0"
           />
           <ul className="space-y-4">
             {aboutData.links.map((link) => (
