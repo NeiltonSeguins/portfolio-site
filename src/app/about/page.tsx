@@ -18,10 +18,10 @@ interface AboutPageData {
 const aboutData = {
   name: "Neilton",
   description: [
-    "Nascido em São Luís, MA, sou formado em Bacharelado em Ciência e Tecnologia e em Engenharia Mecânica. Em 2021, decidi mudar de área e comecei minha jornada na programação, combinando minha curiosidade técnica com a paixão por aprender.",
-    "Já atuei como instrutor durante 03 anos e hoje sou desenvolvedor de software na Alura, trabalhando com tecnologias como JavaScript/TypeScript, React, Next.js, Angular, React Native e Node.js. Tenho experiência em desenvolver aplicações front-end e back-end, além de gostar de testes de software.",
-    "Sou também criador de conteúdo nas plataformas Dev.to e Medium, onde compartilho meu aprendizado, e participo do programa Google Developers. Tenho estudado intensamente a aplicação de Inteligência Artificial no desenvolvimento e gosto de colaborar em projetos open source. Participar do Hacktoberfest todos os anos é uma das minhas tradições favoritas!",
-    "Quando não estou codando, gosto de escutar música, jogar videogames, assistir animes, filmes e séries, ou tocar meu contrabaixo. Afinal, a criatividade no código também é alimentada fora dele!",
+    "Nascido em São Luís, MA, sou formado em Bacharelado em Ciência e Tecnologia e em Engenharia Mecânica na UFMA. Em 2021, decidi mudar de área e comecei minha jornada na programação, combinando minha curiosidade técnica com a paixão por aprender.",
+    "Atuei como instrutor durante 03 anos e hoje sou desenvolvedor de software na Alura, trabalhando com tecnologias como JavaScript/TypeScript, React, Next.js, React Native e Node.js. Tenho experiência em desenvolver aplicações front-end e back-end, além de gostar de testes de software. Atualmente estou cursando a Pós-Tech de FullStack Development na Fiap.",
+    "Raras vezes escrevo nas plataformas Dev.to e Medium, onde compartilho ideias avulsas e conhecimento. Gosto de colaborar em projetos open source e brincar com IAs e código.",
+    "Quando não estou codando, gosto de escutar música, jogar videogames, assistir animes, filmes, séries, ou tocar meu contrabaixo. Afinal, a criatividade no código também é alimentada fora dele!",
   ],
   image: profilePic,
   links: [

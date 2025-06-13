@@ -34,7 +34,7 @@ const Header = () => {
 
       {/* Botão de alternância (menu hamburguer) para telas pequenas */}
       <button
-        className="sm:hidden flex items-center px-4"
+        className="sm:hidden flex items-center"
         onClick={toggleMenu}
         aria-label="Toggle menu"
       >

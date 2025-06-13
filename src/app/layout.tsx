@@ -24,9 +24,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <div className="flex justify-center min-h-screen">
-            <div className="w-full max-w-[1000px] px-4">
+            <div className="w-full max-w-[1000px] px-4 flex flex-col min-h-screen">
               <Header />
-              {children}
+              <main className="flex-1">{children}</main>
               <Footer />
             </div>
           </div>
