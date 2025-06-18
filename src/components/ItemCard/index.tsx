@@ -2,6 +2,7 @@
 import React from "react";
 import Link from "../Link";
 import { CardItem } from "@/@types/schema";
+import Image from "next/image";
 
 interface ItemCardProps {
   item: CardItem;
@@ -9,14 +10,14 @@ interface ItemCardProps {
 
 const ItemCard = ({ item }: ItemCardProps) => {
   return (
-    <div
-      // A 'key' será aplicada no componente Section ao mapear os itens
-      className="flex-shrink-0 w-64 sm:w-72 border rounded-lg p-4 flex flex-col justify-between hover:shadow-lg snap-center"
-    >
+    <div className="flex-shrink-0 w-64 sm:w-72 border rounded-lg p-4 flex flex-col justify-between hover:shadow-lg snap-center">
       {item.cover && (
-        <img
+        <Image
           src={item.cover}
           alt={item.title}
+          width={80}
+          height={80}
+          unoptimized
           className="w-16 sm:w-20 h-16 sm:h-20 rounded-full mb-4 border object-cover"
         />
       )}
