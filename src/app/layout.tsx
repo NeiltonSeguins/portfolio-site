@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Montserrat } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -9,13 +10,21 @@ export const metadata: Metadata = {
   description: "Site pessoal de Neilton Seguins",
 };
 
+const montserrat = Montserrat({
+  subsets: ["latin"],
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-br" suppressHydrationWarning>
+    <html
+      lang="pt-br"
+      className={montserrat.className}
+      suppressHydrationWarning
+    >
       <body>
         <ThemeProvider
           attribute="class"
