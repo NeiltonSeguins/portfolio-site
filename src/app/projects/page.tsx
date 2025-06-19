@@ -5,8 +5,8 @@ export const revalidate = 86400;
 const Projects = async () => {
   return (
     <ContentPage
-      heading="Sempre que posso crio uns projetinhos, dá uma olhada!"
-      subheading="Busco criar projetos para resolver problemas reais e que eu possa me divertir também com eles aprendendo algo útil."
+      heading="Sempre que posso crio ou participo de projetos open source"
+      subheading="Desde colaborar em repositórios abertos até criar meus próprios projetos, gosto de contribuir com a comunidade de desenvolvedores."
       contentKey="projects"
     />
   );

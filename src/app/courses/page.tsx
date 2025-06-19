@@ -4,7 +4,7 @@ import ContentPage from "@/components/ContentPage";
 const Courses = async () => {
   return (
     <ContentPage
-      heading="Como instrutor eu já gravei inúmeros cursos na Alura"
+      heading="Como instrutor eu já gravei vários cursos na Alura"
       subheading="Principalmente sobre React, já contribuí com vários cursos, como contextAPI, testes, validação de formulários e muito mais."
       contentKey="courses"
     />
