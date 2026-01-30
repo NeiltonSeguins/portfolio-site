@@ -7,7 +7,6 @@ import rehypeHighlight from "rehype-highlight";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import "highlight.js/styles/github-dark.css";
-import Link from "../Link";
 import Image from "next/image";
 
 type Props = {
@@ -30,14 +29,17 @@ const MarkdownRenderer = ({ content }: Props) => {
           h3: ({ node, ...props }) => (
             <h3 className="text-xl font-semibold mt-5 mb-2" {...props} />
           ),
+          h4: ({ node, ...props }) => (
+            <h4 className="text-lg font-semibold mt-4 mb-2" {...props} />
+          ),
           p: ({ node, children, ...props }) => {
-            // Se o parágrafo contém apenas uma imagem, retorna só a imagem sem a tag <p>
-            const isImageOnly =
-              node?.children.length === 1 &&
-              "tagName" in node.children[0] &&
-              node.children[0].tagName === "img";
+            // Verifica no AST se o parágrafo contém uma tag 'img'
+            // Isso evita aninhar a div da imagem dentro de um p, o que é HTML inválido
+            const hasImage = (node as any)?.children?.some(
+              (child: any) => child.type === "element" && child.tagName === "img"
+            );
 
-            if (node && isImageOnly) {
+            if (hasImage) {
               return <>{children}</>;
             }
 
@@ -54,36 +56,86 @@ const MarkdownRenderer = ({ content }: Props) => {
             <ol className="list-decimal pl-6 mb-4" {...props} />
           ),
           li: ({ node, ...props }) => <li className="mb-1" {...props} />,
-          code: ({ node, children, ...props }) => {
+          pre: ({ node, ...props }) => (
+            <pre
+              className="bg-[#0d1117] max-w-full mx-auto text-zinc-100 p-4 rounded-lg overflow-auto text-sm my-4"
+              {...props}
+            />
+          ),
+          code: ({ node, className, children, ...props }: any) => {
+            const match = /language-(\w+)/.exec(className || "");
+            const isInline = !match && !String(children).includes("\n");
+            
+            if (isInline) {
+               return (
+                <code
+                  className="bg-zinc-200 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm text-zinc-900 dark:text-zinc-100 font-mono"
+                  {...props}
+                >
+                  {children}
+                </code>
+              );
+            }
+
             return (
-              <pre className="bg-[#0d1117] max-w-full mx-auto text-zinc-100 p-4 rounded-lg overflow-auto text-sm my-4">
-                <code {...props}>{children}</code>
-              </pre>
+              <code className={className} {...props}>
+                {children}
+              </code>
             );
           },
+          blockquote: ({ node, ...props }) => (
+            <blockquote
+              className="border-l-4 border-zinc-300 dark:border-zinc-700 pl-4 italic text-zinc-600 dark:text-zinc-400 my-6"
+              {...props}
+            />
+          ),
           strong: ({ node, ...props }: any) => (
-            <strong className="font-bold" {...props} />
+            <strong className="font-bold text-zinc-900 dark:text-zinc-100" {...props} />
           ),
           a: ({ node, href, children, ...props }) => (
             <a
               href={href}
-              target="_blanked"
-              className="font-semibold hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-blue-600 dark:text-blue-400 hover:underline"
               {...props}
             >
               {children}
             </a>
           ),
-          img: ({ src = "", alt = "" }) => (
-            <div className="relative w-full max-w-3xl mx-auto h-auto aspect-[16/9] my-6">
-              <Image
-                src={src}
-                alt={alt}
-                fill
-                sizes="(max-width: 768px) 100vw, 768px"
-                className="object-contain rounded-lg"
-              />
+          img: ({ src, alt }: any) => {
+            const imageSrc = typeof src === "string" ? src : "";
+            return (
+              <div data-component="image-wrapper" className="relative w-full max-w-3xl mx-auto h-auto aspect-[16/9] my-6">
+                <Image
+                  src={imageSrc}
+                  alt={alt || ""}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 768px"
+                  className="object-contain rounded-lg"
+                />
+              </div>
+            );
+          },
+          table: ({ node, ...props }) => (
+            <div className="overflow-x-auto my-6 rounded-lg border border-zinc-200 dark:border-zinc-800">
+              <table className="w-full text-left text-sm" {...props} />
             </div>
+          ),
+          thead: ({ node, ...props }) => (
+            <thead className="bg-zinc-100 dark:bg-zinc-900 uppercase text-xs font-semibold text-zinc-600 dark:text-zinc-400" {...props} />
+          ),
+          tbody: ({ node, ...props }) => (
+            <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800" {...props} />
+          ),
+          tr: ({ node, ...props }) => (
+            <tr className="hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors" {...props} />
+          ),
+          th: ({ node, ...props }) => (
+            <th className="px-6 py-3 whitespace-nowrap" {...props} />
+          ),
+          td: ({ node, ...props }) => (
+            <td className="px-6 py-4 whitespace-nowrap text-zinc-700 dark:text-zinc-300" {...props} />
           ),
         }}
       >

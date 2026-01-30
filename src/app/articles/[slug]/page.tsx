@@ -6,7 +6,7 @@ import { Metadata } from "next";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 export async function generateStaticParams() {
@@ -15,7 +15,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = await getPostBySlug(params.slug);
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
   return {
     title: post?.title ?? "Artigo",
     description: post?.description ?? "",
@@ -23,7 +24,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 const ArticlePage = async ({ params }: Props) => {
-  const post = await getPostBySlug(params.slug);
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
 
   if (!post) return notFound();
 
@@ -43,7 +45,13 @@ const ArticlePage = async ({ params }: Props) => {
       )}
 
       <h1 className="text-4xl font-bold mt-12">{post.title}</h1>
-      <p className="text-zinc-500 text-sm mt-2">{post.date}</p>
+      <p className="text-zinc-500 text-sm mt-2">
+        {new Date(post.date).toLocaleDateString("pt-BR", {
+          day: "2-digit",
+          month: "long",
+          year: "numeric",
+        })}
+      </p>
 
       <div className="mt-12">
         <MarkdownRenderer content={post.content} />

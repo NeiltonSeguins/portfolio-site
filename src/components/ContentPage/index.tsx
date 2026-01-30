@@ -1,7 +1,6 @@
 import { getContent } from "@/services/services";
 import PageLayout from "@/components/PageLayout";
 import { CardItem } from "@/@types/schema";
-import { formatDate } from "@/lib/utils";
 
 interface ContentListPageProps {
   contentKey: "courses" | "projects";
@@ -24,7 +23,11 @@ const ContentPage = async ({
 
   const formattedItems = sortedItems.map((item: CardItem) => ({
     ...item,
-    date: formatDate(item.date),
+    date: new Date(item.date).toLocaleDateString("pt-BR", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    }),
     link: item.link || "",
   }));
 

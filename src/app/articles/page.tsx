@@ -1,6 +1,5 @@
 export const revalidate = 86400;
 import PageLayout from "@/components/PageLayout";
-import { formatDate } from "@/lib/utils";
 import { getPublishedBlogPosts } from "@/services/services";
 
 const Articles = async () => {
@@ -10,7 +9,7 @@ const Articles = async () => {
     id: article.id,
     title: article.title,
     description: article.description,
-    date: formatDate(article.date),
+    date: article.date,
     link: `/articles/${article.slug}`,
   }));
 

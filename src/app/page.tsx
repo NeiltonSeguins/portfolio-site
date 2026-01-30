@@ -4,8 +4,10 @@ import Section from "@/components/Section";
 import { getContent, getPublishedBlogPosts } from "@/services/services";
 
 const Home = async () => {
-  const articles = await getPublishedBlogPosts();
-  const data = await getContent();
+  const [articles, data] = await Promise.all([
+    getPublishedBlogPosts(),
+    getContent(),
+  ]);
 
   const items = articles.map((article) => ({
     id: article.id,
