@@ -1,4 +1,4 @@
-export const revalidate = 86400;
+
 import Profile from "@/components/Profile";
 import Section from "@/components/Section";
 import { getContent, getPublishedBlogPosts } from "@/services/services";
@@ -18,6 +18,7 @@ const Home = async () => {
       day: "2-digit",
       month: "short",
       year: "numeric",
+      timeZone: "UTC",
     }),
     link: `/articles/${article.slug}`,
   }));

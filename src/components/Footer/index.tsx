@@ -1,6 +1,10 @@
 import Link from "../Link";
+import { cacheLife } from "next/cache";
 
-const Footer = () => {
+const Footer = async () => {
+  "use cache";
+  cacheLife("days");
+
   return (
     <footer className="flex flex-col sm:flex-row justify-center sm:justify-between items-center text-center sm:text-left text-sm py-6 mt-8 gap-4">
       <div className="hidden sm:flex gap-8">

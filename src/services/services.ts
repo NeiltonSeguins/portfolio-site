@@ -2,11 +2,15 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { BlogPost } from "../@types/schema";
-import { cache } from "react";
+import { cacheTag, cacheLife } from "next/cache";
 
 const articlesDirectory = path.join(process.cwd(), "content/articles");
 
-export const getPublishedBlogPosts = cache(async (): Promise<BlogPost[]> => {
+export async function getPublishedBlogPosts(): Promise<BlogPost[]> {
+  "use cache";
+  cacheTag("posts");
+  cacheLife("days");
+
   const fileNames = fs.readdirSync(articlesDirectory);
 
   const allPostsData = fileNames.map((fileName) => {
@@ -33,35 +37,41 @@ export const getPublishedBlogPosts = cache(async (): Promise<BlogPost[]> => {
       return -1;
     }
   });
-});
+}
 
-export const getPostBySlug = cache(
-  async (
-    slug: string
-  ): Promise<(BlogPost & { content: string }) | null> => {
-    const fullPath = path.join(articlesDirectory, `${slug}.md`);
+export async function getPostBySlug(
+  slug: string
+): Promise<(BlogPost & { content: string }) | null> {
+  "use cache";
+  cacheTag(`posts-${slug}`);
+  cacheLife("days");
 
-    if (!fs.existsSync(fullPath)) {
-      return null;
-    }
+  const fullPath = path.join(articlesDirectory, `${slug}.md`);
 
-    const fileContents = fs.readFileSync(fullPath, "utf8");
-    const { data, content } = matter(fileContents);
-
-    return {
-      id: slug,
-      slug,
-      cover: data.cover,
-      title: data.title,
-      description: data.description,
-      tags: data.tags,
-      date: data.date,
-      content,
-    };
+  if (!fs.existsSync(fullPath)) {
+    return null;
   }
-);
+
+  const fileContents = fs.readFileSync(fullPath, "utf8");
+  const { data, content } = matter(fileContents);
+
+  return {
+    id: slug,
+    slug,
+    cover: data.cover,
+    title: data.title,
+    description: data.description,
+    tags: data.tags,
+    date: data.date,
+    content,
+  };
+}
 
 export async function getContent() {
+  "use cache";
+  cacheTag("content");
+  cacheLife("days");
+
   const res = await fetch(
     "https://raw.githubusercontent.com/NeiltonSeguins/content-site/refs/heads/main/content.json",
     {

@@ -27,6 +27,7 @@ const ContentPage = async ({
       day: "2-digit",
       month: "long",
       year: "numeric",
+      timeZone: "UTC",
     }),
     link: item.link || "",
   }));

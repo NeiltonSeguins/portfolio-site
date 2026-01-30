@@ -1,4 +1,4 @@
-export const revalidate = 86400;
+
 import ContentPage from "@/components/ContentPage";
 
 const Courses = async () => {

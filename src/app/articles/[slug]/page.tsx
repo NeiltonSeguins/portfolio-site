@@ -1,4 +1,4 @@
-export const revalidate = 86400;
+
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { getPostBySlug, getPublishedBlogPosts } from "@/services/services";
@@ -50,6 +50,7 @@ const ArticlePage = async ({ params }: Props) => {
           day: "2-digit",
           month: "long",
           year: "numeric",
+          timeZone: "UTC",
         })}
       </p>
 

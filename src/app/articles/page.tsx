@@ -1,4 +1,4 @@
-export const revalidate = 86400;
+
 import PageLayout from "@/components/PageLayout";
 import { getPublishedBlogPosts } from "@/services/services";
 

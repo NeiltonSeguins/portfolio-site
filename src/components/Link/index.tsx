@@ -28,6 +28,8 @@ const Link = ({ children, href, as = "a", ...props }: LinkProps) => {
   return (
     <a
       href={href}
+      target="_blank"
+      rel="noopener noreferrer"
       className={buttonVariants({
         variant: "link",
         className: "cursor-pointer",

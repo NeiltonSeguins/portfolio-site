@@ -1,6 +1,6 @@
 import ContentPage from "@/components/ContentPage";
 
-export const revalidate = 86400;
+
 
 const Projects = async () => {
   return (
