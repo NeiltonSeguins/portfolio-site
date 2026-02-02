@@ -16,7 +16,7 @@ const Articles = async () => {
   return (
     <PageLayout
       heading="Eu gosto de escrever, então geralmente tenho algo para compartilhar"
-      subheading="Eu costumo escrever em plataformas como o Medium e o Dev.To. Mas sempre que posso trago um conteúdo direto das minhas anotações de estudos"
+      subheading="Eu gosto de trazer ideias e pensamentos direto das minhas anotações e estudos"
       items={items}
     />
   );

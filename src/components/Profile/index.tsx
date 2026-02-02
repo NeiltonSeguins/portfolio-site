@@ -1,5 +1,4 @@
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import Link from "../Link";
 import SocialLinks from "../SocialLinks";
 
 const Profile = () => {
@@ -18,11 +17,7 @@ const Profile = () => {
       </h1>
       <p className="mt-4 mb-4 max-w-2xl">
         Eu me chamo Neilton Seguins, otaku não praticante, desenvolvedor, gamer
-        e contrabaixista. Sou Desenvolvedor de software, Instrutor de cursos de
-        programação e escrevo sobre a vida, universo e tudo mais no{" "}
-        <Link as="a" href="https://dev.to/neiltonseguins">
-          Dev.to
-        </Link>
+        e contrabaixista.
       </p>
       <SocialLinks />
     </section>

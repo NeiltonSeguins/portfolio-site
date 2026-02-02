@@ -6,7 +6,7 @@ const Footer = async () => {
   cacheLife("days");
 
   return (
-    <footer className="flex flex-col sm:flex-row justify-center sm:justify-between items-center text-center sm:text-left text-sm py-6 mt-8 gap-4">
+    <footer className="flex flex-col sm:flex-row justify-center sm:justify-between sm:items-center text-center sm:text-left text-sm py-6 mt-8 gap-4">
       <div className="hidden sm:flex gap-8">
         <Link as="router" href="/">
           Home
@@ -25,7 +25,7 @@ const Footer = async () => {
         </Link>
       </div>
 
-      <span>
+      <span className="h-9">
         © {new Date().getFullYear()} Neilton Seguins. Todos os direitos
         reservados.
       </span>
