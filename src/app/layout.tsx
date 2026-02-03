@@ -10,6 +10,9 @@ import Script from "next/script";
 export const metadata: Metadata = {
   title: "Neilton Seguins",
   description: "Site pessoal de Neilton Seguins",
+  other: {
+    "google-adsense-account": "ca-pub-4897518096632597",
+  },
 };
 
 const montserrat = Montserrat({
@@ -27,15 +30,6 @@ export default function RootLayout({
       className={montserrat.className}
       suppressHydrationWarning
     >
-      <head>
-        <Script
-          id="adsense-init"
-          async
-          strategy="afterInteractive"
-          crossOrigin="anonymous"
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4897518096632597"
-        />
-      </head>
       <body>
         <ThemeProvider
           attribute="class"
@@ -55,6 +49,13 @@ export default function RootLayout({
           </div>
         </ThemeProvider>
       </body>
+      <Script
+        id="adsense-init"
+        async
+        strategy="afterInteractive"
+        crossOrigin="anonymous"
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4897518096632597"
+      />
     </html>
   );
 }
