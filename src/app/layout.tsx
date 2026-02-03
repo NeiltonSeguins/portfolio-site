@@ -27,6 +27,15 @@ export default function RootLayout({
       className={montserrat.className}
       suppressHydrationWarning
     >
+      <head>
+        <Script
+          id="adsense-init"
+          async
+          strategy="afterInteractive"
+          crossOrigin="anonymous"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4897518096632597"
+        />
+      </head>
       <body>
         <ThemeProvider
           attribute="class"
@@ -46,12 +55,6 @@ export default function RootLayout({
           </div>
         </ThemeProvider>
       </body>
-      <Script
-        async
-        strategy="lazyOnload"
-        crossOrigin="anonymous"
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4897518096632597"
-      />
     </html>
   );
 }
