@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Neilton Seguins",
@@ -37,7 +38,7 @@ export default function RootLayout({
             <div className="w-full max-w-[1000px] px-4 flex flex-col min-h-screen">
               <Header />
               <main className="flex-1">
-                {children} 
+                {children}
                 <Analytics />
               </main>
               <Footer />
@@ -45,6 +46,12 @@ export default function RootLayout({
           </div>
         </ThemeProvider>
       </body>
+      <Script
+        async
+        strategy="lazyOnload"
+        crossOrigin="anonymous"
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4897518096632597"
+      />
     </html>
   );
 }
