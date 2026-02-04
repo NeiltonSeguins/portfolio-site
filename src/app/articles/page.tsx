@@ -9,7 +9,12 @@ const Articles = async () => {
     id: article.id,
     title: article.title,
     description: article.description,
-    date: article.date,
+    date: new Date(article.date).toLocaleDateString("pt-BR", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+      timeZone: "UTC",
+    }),
     link: `/articles/${article.slug}`,
   }));
 
