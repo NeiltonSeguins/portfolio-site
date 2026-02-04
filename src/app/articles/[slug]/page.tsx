@@ -40,7 +40,7 @@ const ArticlePage = async ({ params }: Props) => {
           priority
           unoptimized
           loading="eager"
-          className="cover object-center mt-6 w-full h-60 object-cover"
+          className="cover object-center mt-6 w-full object-cover h-32 md:h-60"
         />
       )}
 

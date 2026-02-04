@@ -1,13 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeSanitize from "rehype-sanitize";
 import rehypeHighlight from "rehype-highlight";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import "highlight.js/styles/github-dark.css";
-import Image from "next/image";
+import { YouTubeEmbed } from '@next/third-parties/google';
 
 type Props = {
   content: string;
@@ -33,13 +32,25 @@ const MarkdownRenderer = ({ content }: Props) => {
             <h4 className="text-lg font-semibold mt-4 mb-2" {...props} />
           ),
           p: ({ node, children, ...props }) => {
-            // Verifica no AST se o parágrafo contém uma tag 'img'
-            // Isso evita aninhar a div da imagem dentro de um p, o que é HTML inválido
-            const hasImage = (node as any)?.children?.some(
-              (child: any) => child.type === "element" && child.tagName === "img"
-            );
+            // Verifica no AST se o parágrafo contém uma tag 'img' ou um link do YouTube
+            // Isso evita aninhar a div da imagem/vídeo dentro de um p
+            const childrenArray = (node as any)?.children || [];
 
-            if (hasImage) {
+            const hasBlockElement = childrenArray.some((child: any) => {
+              if (child.type === "element" && child.tagName === "img") {
+                return true;
+              }
+              if (child.type === "element" && child.tagName === "a") {
+                const href = child.properties?.href || "";
+                return (
+                  href.includes("youtube.com/watch") ||
+                  href.includes("youtu.be/")
+                );
+              }
+              return false;
+            });
+
+            if (hasBlockElement) {
               return <>{children}</>;
             }
 
@@ -65,9 +76,9 @@ const MarkdownRenderer = ({ content }: Props) => {
           code: ({ node, className, children, ...props }: any) => {
             const match = /language-(\w+)/.exec(className || "");
             const isInline = !match && !String(children).includes("\n");
-            
+
             if (isInline) {
-               return (
+              return (
                 <code
                   className="bg-zinc-200 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm text-zinc-900 dark:text-zinc-100 font-mono"
                   {...props}
@@ -92,27 +103,48 @@ const MarkdownRenderer = ({ content }: Props) => {
           strong: ({ node, ...props }: any) => (
             <strong className="font-bold text-zinc-900 dark:text-zinc-100" {...props} />
           ),
-          a: ({ node, href, children, ...props }) => (
-            <a
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-semibold text-blue-600 dark:text-blue-400 hover:underline"
-              {...props}
-            >
-              {children}
-            </a>
-          ),
-          img: ({ src, alt }: any) => {
-            const imageSrc = typeof src === "string" ? src : "";
+          a: ({ node, href, children, ...props }) => {
+            if (href && (href.includes("youtube.com/watch") || href.includes("youtu.be/"))) {
+              let videoId = "";
+              try {
+                if (href.includes("youtube.com/watch")) {
+                  videoId = new URL(href).searchParams.get("v") || "";
+                } else if (href.includes("youtu.be/")) {
+                  videoId = href.split("youtu.be/")[1]?.split("?")[0] || "";
+                }
+              } catch (e) {
+                // Fallback if URL parsing fails
+                console.error("Error parsing YouTube URL:", e);
+              }
+
+              if (videoId) {
+                return (
+                  <YouTubeEmbed videoid={videoId} params="controls=1" style="border-radius: 10px; margin:24px auto;" />
+                );
+              }
+            }
+
             return (
-              <div data-component="image-wrapper" className="relative w-full max-w-3xl mx-auto h-auto aspect-[16/9] my-6">
-                <Image
-                  src={imageSrc}
+              <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-blue-600 dark:text-blue-400 hover:underline"
+                {...props}
+              >
+                {children}
+              </a>
+            );
+          },
+          img: ({ src, alt }: any) => {
+            return (
+              <div data-component="image-wrapper" className="my-6 flex justify-center">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={src || ""}
                   alt={alt || ""}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 768px"
-                  className="object-contain rounded-lg"
+                  className="rounded-lg max-w-full h-auto object-contain"
+                  style={{ maxHeight: '600px' }}
                 />
               </div>
             );
