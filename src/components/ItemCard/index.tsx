@@ -10,7 +10,7 @@ interface ItemCardProps {
 
 const ItemCard = ({ item }: ItemCardProps) => {
   return (
-    <div className="flex-shrink-0 w-64 sm:w-72 border rounded-lg p-4 flex flex-col justify-between hover:shadow-lg snap-center">
+    <div className="shrink-0 w-64 sm:w-72 border rounded-lg p-4 flex flex-col justify-between hover:shadow-lg snap-center">
       {item.cover && (
         <Image
           src={item.cover}
