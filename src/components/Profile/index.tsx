@@ -1,12 +1,13 @@
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import SocialLinks from "../SocialLinks";
+import profilePic from "../../../public/profile.png";
 
 const Profile = () => {
   return (
     <section className="pb-12">
       <Avatar className="w-24 h-24">
         <AvatarImage
-          src="https://github.com/NeiltonSeguins.png"
+          src={profilePic.src}
           alt="Neilton Seguins"
         />
         <AvatarFallback>NS</AvatarFallback>
