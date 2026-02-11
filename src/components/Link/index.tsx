@@ -1,18 +1,18 @@
 import { ReactNode } from "react";
 import { buttonVariants } from "@/components/ui/button";
-import NextLink from "next/link";
+import { Link as NextIntlLink } from "@/i18n/routing";
 
 type LinkProps = {
   children: ReactNode;
   href?: string;
 } & React.AnchorHTMLAttributes<HTMLAnchorElement> & {
-    as?: "a" | "router";
-  };
+  as?: "a" | "router";
+};
 
 const Link = ({ children, href, as = "a", ...props }: LinkProps) => {
   if (as === "router") {
     return (
-      <NextLink
+      <NextIntlLink
         href={href ?? "#"}
         {...props}
         className={buttonVariants({
@@ -21,7 +21,7 @@ const Link = ({ children, href, as = "a", ...props }: LinkProps) => {
         })}
       >
         {children}
-      </NextLink>
+      </NextIntlLink>
     );
   }
 

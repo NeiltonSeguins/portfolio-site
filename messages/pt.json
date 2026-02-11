@@ -1,0 +1,50 @@
+{
+  "Navigation": {
+    "home": "Home",
+    "about": "Sobre",
+    "articles": "Artigos",
+    "projects": "Projetos",
+    "courses": "Cursos"
+  },
+  "Footer": {
+    "copyright": "© {year} Neilton Seguins. Todos os direitos reservados."
+  },
+  "Profile": {
+    "role": "Software Developer, <br />Tech Educator e Otaku.",
+    "bio": "Eu me chamo Neilton Seguins, otaku não praticante, desenvolvedor, gamer e contrabaixista."
+  },
+  "SocialLinks": {
+    "instagram": "Instagram de Neilton Seguins",
+    "github": "GitHub de Neilton Seguins",
+    "linkedin": "LinkedIn de Neilton Seguins"
+  },
+  "HomePage": {
+    "articles": "#Artigos",
+    "courses": "#Cursos",
+    "projects": "#Projetos"
+  },
+  "AboutPage": {
+    "title": "E aí, tudo bem? Sou {name}, prazer!",
+    "description_1": "Sou de São Luís, MA, formado em Bacharelado em Ciência e Tecnologia e em Engenharia Mecânica pela UFMA. Em 2021, decidi mudar de área e comecei minha jornada na programação, combinando minha curiosidade técnica com a paixão por aprender.",
+    "description_2": "Atuei como instrutor durante 03 anos e hoje sou desenvolvedor de software na Alura, trabalhando com tecnologias como JavaScript/TypeScript, React, Next.js, React Native e Node.js. Tenho experiência em desenvolver aplicações front-end e back-end, além de gostar de testes de software. Atualmente estou cursando a Pós-Tech de FullStack Development na Fiap.",
+    "description_3": "Quando não estou codando, gosto de escutar música, jogar videogames, assistir animes, filmes, séries, ou tocar meu contrabaixo. Afinal, a criatividade no código também é alimentada fora dele!",
+    "links": {
+      "instagram": "Dá uma olhada no Instagram",
+      "github": "Meus projetos no GitHub",
+      "linkedin": "LinkedIn perfil profissional",
+      "email": "seguins.neilton@gmail.com"
+    }
+  },
+  "ProjectsPage": {
+    "heading": "Sempre que posso crio ou participo de projetos open source",
+    "subheading": "Desde colaborar em repositórios abertos até criar meus próprios projetos, gosto de contribuir com a comunidade de desenvolvedores."
+  },
+  "ArticlesPage": {
+    "heading": "Eu gosto de escrever, então geralmente tenho algo para compartilhar",
+    "subheading": "Eu gosto de trazer ideias e pensamentos direto das minhas anotações e estudos"
+  },
+  "CoursesPage": {
+    "heading": "Como instrutor eu já gravei vários cursos na Alura",
+    "subheading": "Principalmente sobre React, já contribuí com vários cursos, como contextAPI, testes, validação de formulários e muito mais."
+  }
+}

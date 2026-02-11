@@ -3,7 +3,17 @@ import Profile from "@/components/Profile";
 import Section from "@/components/Section";
 import { getContent, getPublishedBlogPosts } from "@/services/services";
 
-const Home = async () => {
+import { getTranslations, setRequestLocale } from "next-intl/server";
+
+const Home = async (props: { params: Promise<{ locale: string }> }) => {
+  const params = await props.params;
+  const { locale } = params;
+
+  // Enable static rendering
+  setRequestLocale(locale);
+
+  const t = await getTranslations({ locale, namespace: "HomePage" });
+
   const [articles, data] = await Promise.all([
     getPublishedBlogPosts(),
     getContent(),
@@ -14,7 +24,7 @@ const Home = async () => {
     title: article.title,
     cover: article.cover,
     description: article.description,
-    date: new Date(article.date).toLocaleDateString("pt-BR", {
+    date: new Date(article.date).toLocaleDateString(locale, {
       day: "2-digit",
       month: "short",
       year: "numeric",
@@ -26,9 +36,9 @@ const Home = async () => {
   return (
     <main className="flex flex-1 flex-col items-start justify-center pt-12 gap-4">
       <Profile />
-      <Section title="#Artigos" items={items} />
-      <Section title="#Cursos" items={data.courses} />
-      <Section title="#Projetos" items={data.projects} />
+      <Section title={t("articles")} items={items} />
+      <Section title={t("courses")} items={data.courses} />
+      <Section title={t("projects")} items={data.projects} />
     </main>
   );
 };

@@ -12,7 +12,8 @@ const ContentPage = async ({
   contentKey,
   heading,
   subheading,
-}: ContentListPageProps) => {
+  locale,
+}: ContentListPageProps & { locale: string }) => {
   const allContent = await getContent();
 
   const items: CardItem[] = (allContent[contentKey] as CardItem[]) || [];
@@ -23,7 +24,7 @@ const ContentPage = async ({
 
   const formattedItems = sortedItems.map((item: CardItem) => ({
     ...item,
-    date: new Date(item.date).toLocaleDateString("pt-BR", {
+    date: new Date(item.date).toLocaleDateString(locale, {
       day: "2-digit",
       month: "long",
       year: "numeric",

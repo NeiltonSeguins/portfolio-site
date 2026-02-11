@@ -1,15 +1,21 @@
 
 import PageLayout from "@/components/PageLayout";
 import { getPublishedBlogPosts } from "@/services/services";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
-const Articles = async () => {
+const Articles = async (props: { params: Promise<{ locale: string }> }) => {
+  const params = await props.params;
+  const { locale } = params;
+  setRequestLocale(locale);
+
+  const t = await getTranslations({ locale, namespace: "ArticlesPage" });
   const articles = await getPublishedBlogPosts();
 
   const items = articles.map((article) => ({
     id: article.id,
     title: article.title,
     description: article.description,
-    date: new Date(article.date).toLocaleDateString("pt-BR", {
+    date: new Date(article.date).toLocaleDateString(locale, {
       day: "2-digit",
       month: "long",
       year: "numeric",
@@ -20,8 +26,8 @@ const Articles = async () => {
 
   return (
     <PageLayout
-      heading="Eu gosto de escrever, então geralmente tenho algo para compartilhar"
-      subheading="Eu gosto de trazer ideias e pensamentos direto das minhas anotações e estudos"
+      heading={t("heading")}
+      subheading={t("subheading")}
       items={items}
     />
   );

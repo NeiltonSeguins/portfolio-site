@@ -4,8 +4,11 @@ import { ModeToggle } from "../mode-toggle";
 import { useState } from "react";
 import { HamburgerMenuIcon, Cross2Icon } from "@radix-ui/react-icons";
 
+import { useTranslations } from "next-intl";
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const t = useTranslations("Navigation");
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -16,19 +19,19 @@ const Header = () => {
       {/* Menu normal para telas grandes */}
       <div className="hidden sm:flex gap-8">
         <Link as="router" href="/">
-          Home
+          {t("home")}
         </Link>
         <Link as="router" href="/about">
-          Sobre
+          {t("about")}
         </Link>
         <Link as="router" href="/articles">
-          Artigos
+          {t("articles")}
         </Link>
         <Link as="router" href="/projects">
-          Projetos
+          {t("projects")}
         </Link>
         <Link as="router" href="/courses">
-          Cursos
+          {t("courses")}
         </Link>
       </div>
 
@@ -50,19 +53,19 @@ const Header = () => {
         <div className="absolute top-16 left-0 w-full bg-white dark:bg-zinc-950 shadow-md z-50 sm:hidden">
           <div className="flex flex-col items-center gap-4 p-4">
             <Link as="router" href="/" onClick={toggleMenu}>
-              Home
+              {t("home")}
             </Link>
             <Link as="router" href="/about" onClick={toggleMenu}>
-              Sobre
+              {t("about")}
             </Link>
             <Link as="router" href="/articles" onClick={toggleMenu}>
-              Artigos
+              {t("articles")}
             </Link>
             <Link as="router" href="/projects" onClick={toggleMenu}>
-              Projetos
+              {t("projects")}
             </Link>
             <Link as="router" href="/courses" onClick={toggleMenu}>
-              Cursos
+              {t("courses")}
             </Link>
           </div>
         </div>

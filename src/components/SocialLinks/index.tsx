@@ -12,25 +12,28 @@ interface SocialLinkItem {
   icon: React.FC<IconProps>;
 }
 
-const socialLinksData: SocialLinkItem[] = [
-  {
-    href: "https://www.instagram.com/neilton_seguins/",
-    label: "Instagram de Neilton Seguins",
-    icon: InstagramLogoIcon,
-  },
-  {
-    href: "https://github.com/NeiltonSeguins",
-    label: "GitHub de Neilton Seguins",
-    icon: GitHubLogoIcon,
-  },
-  {
-    href: "https://www.linkedin.com/in/ne%C3%ADlton-seguins/",
-    label: "LinkedIn de Neilton Seguins",
-    icon: LinkedInLogoIcon,
-  },
-];
+import { useTranslations } from "next-intl";
 
 const SocialLinks = () => {
+  const t = useTranslations("SocialLinks");
+
+  const socialLinksData: SocialLinkItem[] = [
+    {
+      href: "https://www.instagram.com/neilton_seguins/",
+      label: t("instagram"),
+      icon: InstagramLogoIcon,
+    },
+    {
+      href: "https://github.com/NeiltonSeguins",
+      label: t("github"),
+      icon: GitHubLogoIcon,
+    },
+    {
+      href: "https://www.linkedin.com/in/ne%C3%ADlton-seguins/",
+      label: t("linkedin"),
+      icon: LinkedInLogoIcon,
+    },
+  ];
   return (
     <div className="flex gap-8 mt-2">
       {socialLinksData.map((socialLink) => (

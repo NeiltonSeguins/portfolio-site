@@ -1,0 +1,50 @@
+{
+  "Navigation": {
+    "home": "Home",
+    "about": "About",
+    "articles": "Articles",
+    "projects": "Projects",
+    "courses": "Courses"
+  },
+  "Footer": {
+    "copyright": "© {year} Neilton Seguins. All rights reserved."
+  },
+  "Profile": {
+    "role": "Software Developer, <br />Tech Educator and Otaku.",
+    "bio": "My name is Neilton Seguins, non-practicing otaku, developer, gamer and bassist."
+  },
+  "SocialLinks": {
+    "instagram": "Neilton Seguins' Instagram",
+    "github": "Neilton Seguins' GitHub",
+    "linkedin": "Neilton Seguins' LinkedIn"
+  },
+  "HomePage": {
+    "articles": "#Articles",
+    "courses": "#Courses",
+    "projects": "#Projects"
+  },
+  "AboutPage": {
+    "title": "Hi there! I'm {name}, nice to meet you!",
+    "description_1": "I'm from São Luís, MA, Brazil. I hold a degree in Science and Technology and Mechanical Engineering from UFMA. In 2021, I decided to switch careers and started my journey in programming, combining my technical curiosity with a passion for learning.",
+    "description_2": "I worked as an instructor for 3 years, and today I am a software developer at Alura, working with technologies like JavaScript/TypeScript, React, Next.js, React Native, and Node.js. I have experience in developing front-end and back-end applications, and I also enjoy software testing. Currently, I am pursuing a Postgraduate degree in FullStack Development at Fiap.",
+    "description_3": "When I'm not coding, I like listening to music, playing video games, watching anime, movies, series, or playing my bass. After all, creativity in code is also fueled outside of it!",
+    "links": {
+      "instagram": "Check out my Instagram",
+      "github": "My projects on GitHub",
+      "linkedin": "LinkedIn professional profile",
+      "email": "seguins.neilton@gmail.com"
+    }
+  },
+  "ProjectsPage": {
+    "heading": "Whenever I can, I create or participate in open source projects",
+    "subheading": "From collaborating on open repositories to creating my own projects, I enjoy contributing to the developer community."
+  },
+  "ArticlesPage": {
+    "heading": "I like to write, so I usually have something to share",
+    "subheading": "I like to bring ideas and thoughts straight from my notes and studies"
+  },
+  "CoursesPage": {
+    "heading": "As an instructor, I have recorded several courses at Alura",
+    "subheading": "Mainly about React, I have contributed to several courses, such as ContextAPI, testing, form validation, and much more."
+  }
+}
