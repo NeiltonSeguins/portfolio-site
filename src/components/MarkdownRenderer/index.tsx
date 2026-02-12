@@ -7,6 +7,7 @@ import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import "highlight.js/styles/github-dark.css";
 import { YouTubeEmbed } from '@next/third-parties/google';
+import { Link } from "@/i18n/routing";
 
 type Props = {
   content: string;
@@ -127,6 +128,21 @@ const MarkdownRenderer = ({ content }: Props) => {
               }
             }
 
+            // Check if it's an internal link (starts with /)
+            const isInternalLink = href && href.startsWith("/");
+
+            if (isInternalLink) {
+              return (
+                <Link
+                  href={href}
+                  className="font-semibold text-blue-600 dark:text-blue-400 hover:underline"
+                >
+                  {children}
+                </Link>
+              );
+            }
+
+            // External link
             return (
               <a
                 href={href}

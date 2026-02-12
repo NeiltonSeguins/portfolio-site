@@ -34,12 +34,12 @@ const Home = async (props: { params: Promise<{ locale: string }> }) => {
   }));
 
   return (
-    <main className="flex flex-1 flex-col items-start justify-center pt-12 gap-4">
+    <div className="flex flex-1 flex-col items-start justify-center pt-12 gap-4">
       <Profile />
       <Section title={t("articles")} items={items} />
       <Section title={t("courses")} items={data.courses} />
       <Section title={t("projects")} items={data.projects} />
-    </main>
+    </div>
   );
 };
 

@@ -46,5 +46,15 @@
   "CoursesPage": {
     "heading": "As an instructor, I have recorded several courses at Alura",
     "subheading": "Mainly about React, I have contributed to several courses, such as ContextAPI, testing, form validation, and much more."
+  },
+  "NotFound": {
+    "title": "Oops! Page not found",
+    "description": "Looks like you got lost... This page doesn't exist (yet)!",
+    "button": "Back to Home"
+  },
+  "GlobalError": {
+    "title": "Something went wrong!",
+    "description": "Sorry, we encountered an unexpected error. Please try again later.",
+    "button": "Try again"
   }
 }

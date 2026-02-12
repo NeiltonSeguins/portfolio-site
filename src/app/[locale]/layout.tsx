@@ -57,7 +57,7 @@ export default async function RootLayout(props: {
       suppressHydrationWarning
     >
       <body>
-        <NextIntlClientProvider messages={messages}>
+        <NextIntlClientProvider messages={messages} locale={locale}>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
