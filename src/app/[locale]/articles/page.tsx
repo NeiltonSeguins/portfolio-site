@@ -1,5 +1,5 @@
 
-import PageLayout from "@/components/PageLayout";
+import ArticlesContainer from "@/components/ArticlesContainer";
 import { getPublishedBlogPosts } from "@/services/services";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
@@ -22,13 +22,14 @@ const Articles = async (props: { params: Promise<{ locale: string }> }) => {
       timeZone: "UTC",
     }),
     link: `/articles/${article.slug}`,
+    tags: article.tags,
   }));
 
   return (
-    <PageLayout
+    <ArticlesContainer
       heading={t("heading")}
       subheading={t("subheading")}
-      items={items}
+      initialItems={items}
     />
   );
 };

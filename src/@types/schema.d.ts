@@ -28,6 +28,7 @@ export type Item = {
   description: string;
   link: string;
   date: string;
+  tags?: Tag[];
 };
 
 export type CardItem = {
