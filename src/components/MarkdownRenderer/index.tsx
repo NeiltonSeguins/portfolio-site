@@ -24,16 +24,24 @@ const MarkdownRenderer = ({ content }: Props) => {
             <h1 className="text-3xl font-bold mt-8 mb-4" {...props} />
           ),
           h2: ({ node, children, ...props }) => {
-            const id = String(children).toLowerCase().replace(/[^\w]+/g, '-');
+            const id = String(children).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^\w]+/g, "-").replace(/^-|-$/g, "");
             return <h2 id={id} className="text-2xl font-semibold mt-6 mb-3 scroll-mt-24" {...props}>{children}</h2>
           },
           h3: ({ node, children, ...props }) => {
-            const id = String(children).toLowerCase().replace(/[^\w]+/g, '-');
+            const id = String(children).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^\w]+/g, "-").replace(/^-|-$/g, "");
             return <h3 id={id} className="text-xl font-semibold mt-5 mb-2 scroll-mt-24" {...props}>{children}</h3>
           },
           h4: ({ node, children, ...props }) => {
-            const id = String(children).toLowerCase().replace(/[^\w]+/g, '-');
+            const id = String(children).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^\w]+/g, "-").replace(/^-|-$/g, "");
             return <h4 id={id} className="text-lg font-semibold mt-4 mb-2 scroll-mt-24" {...props}>{children}</h4>
+          },
+          h5: ({ node, children, ...props }) => {
+            const id = String(children).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^\w]+/g, "-").replace(/^-|-$/g, "");
+            return <h5 id={id} className="text-base font-semibold mt-4 mb-2 scroll-mt-24" {...props}>{children}</h5>
+          },
+          h6: ({ node, children, ...props }) => {
+            const id = String(children).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^\w]+/g, "-").replace(/^-|-$/g, "");
+            return <h6 id={id} className="text-sm font-semibold mt-4 mb-2 scroll-mt-24 text-zinc-500 dark:text-zinc-400" {...props}>{children}</h6>
           },
           p: ({ node, children, ...props }) => {
             // Verifica no AST se o parágrafo contém uma tag 'img' ou um link do YouTube
@@ -71,6 +79,13 @@ const MarkdownRenderer = ({ content }: Props) => {
             <ol className="list-decimal pl-6 mb-4" {...props} />
           ),
           li: ({ node, ...props }) => <li className="mb-1" {...props} />,
+          input: ({ node, ...props }: any) => (
+            <input
+              {...props}
+              disabled
+              className="mr-2 accent-blue-600 cursor-default"
+            />
+          ),
           pre: ({ node, ...props }) => (
             <pre
               className="bg-[#0d1117] max-w-full mx-auto text-zinc-100 p-4 rounded-lg overflow-auto text-sm my-4"
@@ -104,8 +119,17 @@ const MarkdownRenderer = ({ content }: Props) => {
               {...props}
             />
           ),
+          hr: ({ node, ...props }) => (
+            <hr className="border-zinc-200 dark:border-zinc-700 my-8" {...props} />
+          ),
+          em: ({ node, ...props }) => (
+            <em className="italic text-zinc-700 dark:text-zinc-300" {...props} />
+          ),
           strong: ({ node, ...props }: any) => (
             <strong className="font-bold text-zinc-900 dark:text-zinc-100" {...props} />
+          ),
+          del: ({ node, ...props }) => (
+            <del className="line-through text-zinc-500 dark:text-zinc-400" {...props} />
           ),
           a: ({ node, href, children, ...props }) => {
             if (href && (href.includes("youtube.com/watch") || href.includes("youtu.be/"))) {

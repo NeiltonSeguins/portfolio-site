@@ -18,9 +18,40 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
+
+  if (!post) {
+    return {
+      title: "Artigo não encontrado",
+      description: "O artigo que você está procurando não existe ou foi removido.",
+    };
+  }
+
+  const ogImages = post.cover ? [{
+    url: post.cover,
+    width: 1200,
+    height: 630,
+    alt: post.title,
+  }] : [];
+
   return {
-    title: post?.title ?? "Artigo",
-    description: post?.description ?? "",
+    title: post.title,
+    description: post.description,
+    openGraph: {
+      title: post.title,
+      description: post.description,
+      type: "article",
+      url: `/articles/${slug}`,
+      publishedTime: new Date(post.date).toISOString(),
+      authors: ["Neilton Seguins"],
+      tags: post.tags as unknown as string[],
+      images: ogImages,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.description,
+      images: post.cover ? [post.cover] : [],
+    },
   };
 }
 
