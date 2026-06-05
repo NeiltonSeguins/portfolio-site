@@ -5,7 +5,7 @@ import {
   EnvelopeOpenIcon,
 } from "@radix-ui/react-icons";
 import Image, { StaticImageData } from "next/image";
-import profilePic from "./profile-pic.jpg";
+import profilePic from "./profile-pic.jpeg";
 import { LinkItemData } from "@/@types/schema";
 import AboutLinkItem from "./AboutLinkItem";
 import { getTranslations, setRequestLocale } from "next-intl/server";
