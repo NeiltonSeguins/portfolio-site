@@ -57,7 +57,7 @@ const TableOfContents = ({ headings }: TableOfContentsProps) => {
                 }`}
               onClick={(e) => {
                 e.preventDefault();
-                document.querySelector(`#${heading.id}`)?.scrollIntoView({
+                document.getElementById(heading.id)?.scrollIntoView({
                   behavior: "smooth",
                 });
                 setActiveId(heading.id);

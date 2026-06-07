@@ -77,7 +77,7 @@ const ArticlePage = async ({ params }: Props) => {
   while ((match = regex.exec(post.content)) !== null) {
     const level = match[1].length;
     const text = match[2].trim();
-    const id = text.toLowerCase().replace(/[^\w]+/g, '-');
+    const id = text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^\w]+/g, "-").replace(/^-|-$/g, "");
     headings.push({ id, text, level });
   }
 

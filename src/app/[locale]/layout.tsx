@@ -61,7 +61,7 @@ export default async function RootLayout(props: {
       className={montserrat.className}
       suppressHydrationWarning
     >
-      <body>
+      <body suppressHydrationWarning>
         <NextIntlClientProvider messages={messages} locale={locale}>
           <ThemeProvider
             attribute="class"
