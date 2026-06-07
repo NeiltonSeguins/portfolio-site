@@ -27,6 +27,8 @@ export async function getPublishedBlogPosts(): Promise<BlogPost[]> {
       description: data.description,
       tags: data.tags,
       date: data.date,
+      series: data.series,
+      seriesOrder: data.seriesOrder,
     };
   });
 
@@ -63,6 +65,8 @@ export async function getPostBySlug(
     description: data.description,
     tags: data.tags,
     date: data.date,
+    series: data.series,
+    seriesOrder: data.seriesOrder,
     content,
   };
 }
@@ -90,4 +94,11 @@ export async function getContent() {
     courses: data.courses,
     projects: data.projects,
   };
+}
+
+export async function getPostsBySeries(seriesName: string): Promise<BlogPost[]> {
+  const posts = await getPublishedBlogPosts();
+  return posts
+    .filter((post) => post.series === seriesName)
+    .sort((a, b) => (a.seriesOrder || 0) - (b.seriesOrder || 0));
 }

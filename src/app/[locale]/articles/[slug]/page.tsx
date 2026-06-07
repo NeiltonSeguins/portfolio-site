@@ -1,10 +1,11 @@
 
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import { getPostBySlug, getPublishedBlogPosts } from "@/services/services";
+import { getPostBySlug, getPublishedBlogPosts, getPostsBySeries } from "@/services/services";
 import { Metadata } from "next";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import TableOfContents from "@/components/TableOfContents";
+import SeriesBanner from "@/components/SeriesBanner";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -61,6 +62,11 @@ const ArticlePage = async ({ params }: Props) => {
 
   if (!post) return notFound();
 
+  let seriesPosts: any[] = [];
+  if (post.series) {
+    seriesPosts = await getPostsBySeries(post.series);
+  }
+
   // Extract headings from markdown content
   const headings = [];
   const regex = /^(#{2,3})\s+(.+)$/gm;
@@ -100,9 +106,14 @@ const ArticlePage = async ({ params }: Props) => {
             })}
           </p>
 
+
           <div className="prose prose-zinc dark:prose-invert max-w-none">
             <MarkdownRenderer content={post.content} />
           </div>
+
+          {post.series && seriesPosts.length > 0 && (
+            <SeriesBanner currentPost={post} seriesPosts={seriesPosts} />
+          )}
         </div>
 
         <div className="lg:col-span-1 hidden lg:block">

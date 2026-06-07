@@ -15,6 +15,8 @@ export type BlogPost = {
   content?: string;
   tags: Tag[];
   date: string;
+  series?: string;
+  seriesOrder?: number;
 };
 
 export type PostPage = {

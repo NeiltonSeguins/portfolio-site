@@ -5,6 +5,8 @@ slug: "o-que-sao-ataques-dos-e-ddos"
 date: "2026-02-24"
 cover: "https://images.unsplash.com/photo-1562813733-b31f71025d54?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 tags: ["segurança", " ataques", " frontend"]
+series: "Segurança no Front-end"
+seriesOrder: 2
 ---
 
 Dando continuidade à série de artigos que falam sobre segurança no front-end, hoje quero falar sobre os **ataques de negação de serviço** e os **ataques de negação de serviço distribuídos**, os chamados DoS e DDoS, respectivamente.

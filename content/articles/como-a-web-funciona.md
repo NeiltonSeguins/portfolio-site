@@ -5,6 +5,8 @@ slug: "como-a-web-funciona"
 date: "2026-02-24"
 cover: "https://images.unsplash.com/photo-1664526937147-93be5ee5ff92?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 tags: ["redes", " OSI"]
+series: "Segurança no Front-end"
+seriesOrder: 1
 ---
 
 Esses dias estava lendo um livro bem interessante sobre [segurança no front-end](https://www.casadocodigo.com.br/products/livro-seguranca-frontend) e me deparei com alguns conceitos sobre como a web funciona que, confesso, já nem me lembrava mais. São aquelas coisas que você aprende na graduação, usa apenas para resolver uma prova e depois esquece.
