@@ -90,7 +90,6 @@ const ArticlePage = async ({ params }: Props) => {
           width={800}
           height={240}
           priority
-          unoptimized
           loading="eager"
           className="cover object-center mt-6 w-full object-cover h-32 md:h-60 rounded-lg mb-8"
         />

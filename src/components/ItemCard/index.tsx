@@ -17,7 +17,6 @@ const ItemCard = ({ item }: ItemCardProps) => {
           alt={item.title}
           width={80}
           height={80}
-          unoptimized
           className="w-16 sm:w-20 h-16 sm:h-20 rounded-full mb-4 border object-cover"
         />
       )}

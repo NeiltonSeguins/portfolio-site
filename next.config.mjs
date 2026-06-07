@@ -15,6 +15,21 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "plus.unsplash.com",
+        pathname: "**",
+      },
+      {
+        protocol: "https",
+        hostname: "imgs.search.brave.com",
+        pathname: "**",
+      },
+      {
+        protocol: "https",
+        hostname: "meu-maranhao.vercel.app",
+        pathname: "**",
+      },
+      {
+        protocol: "https",
         hostname: "s3.us-west-2.amazonaws.com",
         pathname: "**",
       },

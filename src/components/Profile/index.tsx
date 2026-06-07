@@ -1,18 +1,23 @@
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { Avatar, AvatarFallback } from "../ui/avatar";
 import SocialLinks from "../SocialLinks";
 import profilePic from "../../../public/profile.png";
 
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 const Profile = () => {
   const t = useTranslations("Profile");
 
   return (
     <section className="pb-12">
-      <Avatar className="w-24 h-24">
-        <AvatarImage
-          src={profilePic.src}
+      <Avatar className="w-24 h-24 relative">
+        <Image
+          src={profilePic}
           alt="Neilton Seguins"
+          fill
+          sizes="(max-width: 768px) 100vw, 96px"
+          className="object-cover aspect-square h-full w-full"
+          priority
         />
         <AvatarFallback>NS</AvatarFallback>
       </Avatar>
