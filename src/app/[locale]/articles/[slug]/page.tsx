@@ -6,6 +6,7 @@ import { Metadata } from "next";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import TableOfContents from "@/components/TableOfContents";
 import SeriesBanner from "@/components/SeriesBanner";
+import { Badge } from "@/components/ui/badge";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -97,7 +98,7 @@ const ArticlePage = async ({ params }: Props) => {
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
         <div className="lg:col-span-3">
           <h1 className="text-4xl font-bold mt-2">{post.title}</h1>
-          <p className="text-zinc-500 text-sm mt-2 mb-8">
+          <p className="text-zinc-500 text-sm mt-2 mb-6">
             {new Date(post.date).toLocaleDateString("pt-BR", {
               day: "2-digit",
               month: "long",
@@ -105,6 +106,20 @@ const ArticlePage = async ({ params }: Props) => {
               timeZone: "UTC",
             })}
           </p>
+
+          {post.tags && post.tags.length > 0 && (
+            <div className="flex flex-wrap gap-2 mb-8">
+              {post.tags.map((tag: any, idx: number) => {
+                const tagName = typeof tag === "string" ? tag : tag.name;
+                if (!tagName) return null;
+                return (
+                  <Badge key={idx} variant="secondary" className="font-normal text-xs">
+                    #{tagName.trim()}
+                  </Badge>
+                );
+              })}
+            </div>
+          )}
 
 
           <div className="prose prose-zinc dark:prose-invert max-w-none">
