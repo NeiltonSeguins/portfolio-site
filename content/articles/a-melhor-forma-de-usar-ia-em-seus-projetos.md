@@ -1,6 +1,6 @@
 ---
 title: "A melhor forma de usar IA em seus projetos"
-description: "Assistentes de código sempre existiram em diferentes épocas, mas você quase nunca ouviu falar disso."
+description: "Entenda como usar a IA da melhor forma nos seus projetos"
 slug: "a-melhor-forma-de-usar-ia-em-seus-projetos"
 date: "2026-06-04"
 cover: "https://images.unsplash.com/photo-1568833450751-fba3c6b2d129?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
