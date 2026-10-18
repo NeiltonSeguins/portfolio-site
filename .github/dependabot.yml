@@ -1,19 +1,16 @@
 version: 2
 updates:
-  # Monitoramento de dependências do projeto (npm, yarn, pnpm)
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "weekly" # "daily", "weekly" ou "monthly"
+      interval: "weekly"
       day: "monday"
       time: "09:00"
       timezone: "America/Sao_Paulo"
-    open-pull-requests-limit: 10
+    open-pull-requests-limit: 5
     commit-message:
       prefix: "chore(deps)"
     groups:
-      # Agrupa dependências de desenvolvimento para evitar spam de PRs
-      dev-dependencies:
+      all-dependencies:
         patterns:
           - "*"
-        dependency-type: "development"
