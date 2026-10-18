@@ -1,0 +1,27 @@
+version: 2
+updates:
+  # Monitoramento de dependências do projeto (npm, yarn, pnpm)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly" # "daily", "weekly" ou "monthly"
+      day: "monday"
+      time: "09:00"
+      timezone: "America/Sao_Paulo"
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: "chore(deps)"
+    groups:
+      # Agrupa dependências de desenvolvimento para evitar spam de PRs
+      dev-dependencies:
+        patterns:
+          - "*"
+        dependency-type: "development"
+
+  # Monitoramento das versões de GitHub Actions do repositório
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "ci(deps)"
