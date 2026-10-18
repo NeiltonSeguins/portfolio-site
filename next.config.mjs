@@ -6,6 +6,7 @@ const withNextIntl = createNextIntlPlugin();
 const nextConfig = {
   trailingSlash: true,
   cacheComponents: true,
+  partialPrefetching: true,
   images: {
     remotePatterns: [
       {

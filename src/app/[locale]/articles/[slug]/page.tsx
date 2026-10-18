@@ -13,6 +13,8 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
+export const instant = false;
+
 export async function generateStaticParams() {
   const posts = await getPublishedBlogPosts();
   return posts.map((post) => ({ slug: post.slug }));
@@ -84,15 +86,16 @@ const ArticlePage = async ({ params }: Props) => {
   return (
     <article className="max-w-6xl mx-auto px-4 md:px-0">
       {post.cover && (
-        <Image
-          src={post.cover}
-          alt="Capa do artigo"
-          width={800}
-          height={240}
-          priority
-          loading="eager"
-          className="cover object-center mt-6 w-full object-cover h-32 md:h-60 rounded-lg mb-8"
-        />
+        <div className="relative w-full h-32 md:h-60 mt-6 mb-8 rounded-lg overflow-hidden">
+          <Image
+            src={post.cover}
+            alt="Capa do artigo"
+            fill
+            priority
+            sizes="(max-width: 768px) 100vw, 1200px"
+            className="cover object-center object-cover"
+          />
+        </div>
       )}
 
       {/* Header Section */}
